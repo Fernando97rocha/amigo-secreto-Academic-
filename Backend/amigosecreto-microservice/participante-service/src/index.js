@@ -1,18 +1,26 @@
-const express = require("express");
+const express = require('express');
+const mongoose = require('mongoose');
+const routes = require('./routes/routes')
 
 const app = express();
 
 app.use(express.json());
 
-app.get("/:name", (request, response) => {
-    return response.send("Hello World " + `${request.params.name}`);
-});
+app.use(routes);
 
-app.post("/participante", (req, res) => {
-    console.log(req.body);
-    const { nome } = req.body;
-    return res.json({"mensagem":`Olá ${nome}`});
-});
+const username = encodeURIComponent("fernando97");
+const password = encodeURIComponent("crossgnt123")
 
-app.listen(3333);
+mongoose.connect(
+    `mongodb+srv://${username}:${password}@amigosecretodb.cusquzn.mongodb.net/?retryWrites=true&w=majority&appName=AmigoSecretoDB`
+);
+
+const connection = mongoose.connection;
+connection.once("open", () => {
+    console.log("MongoBD connected..............")
+})
+
+app.listen(3333, () => {
+    console.log("server is running")
+});
 
