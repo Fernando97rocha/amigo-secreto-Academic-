@@ -1,11 +1,12 @@
 const express = require('express');
+require('dotenv-safe');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const routes = require('./routes/routes');
-
 const app = express();
 
 app.use(express.json());
-
+app.use(cors());
 app.use(routes);
 
 const username = encodeURIComponent("fernando97");
@@ -24,4 +25,5 @@ app.listen(3333, () => {
     console.log("server is running")
 });
 
-app.listen(3334);
+
+app.listen(3338, () => console.log(`API online na porta ${3338}!`));

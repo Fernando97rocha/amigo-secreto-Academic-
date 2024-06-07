@@ -8,10 +8,20 @@ app.use(express.json());
 
 app.use(routes);
 
-mongoose.connect('mongodb+srv://humberto:humberto@cluster0-fbd4q.azure.mongodb.net/test?retryWrites=true&w=majority',{
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+const username = encodeURIComponent("fernando97");
+const password = encodeURIComponent("crossgnt123")
 
+mongoose.connect(
+    `mongodb+srv://${username}:${password}@amigosecretodb.cusquzn.mongodb.net/?retryWrites=true&w=majority&appName=AmigoSecretoDB`
+);
+
+const connection = mongoose.connection;
+connection.once("open", () => {
+    console.log("MongoBD connected..............")
+})
+
+app.listen(3333, () => {
+    console.log("server is running")
+});
 
 app.listen(3335);
