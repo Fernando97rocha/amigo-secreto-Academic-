@@ -18,7 +18,7 @@ let emailASerEnviado = {
     text: 'Estou enviando este email com Node.js'
 }
 
-remetente.sendMail(emailASerEnviado, error => {
+remetente.conviteEmail(emailASerEnviado, error => {
     if (error) {
         console.log(error);
     } else {
@@ -26,4 +26,4 @@ remetente.sendMail(emailASerEnviado, error => {
     }
 })
 
-module.exports = sendMail;
+module.exports = conviteEmail;
